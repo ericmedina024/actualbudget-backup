@@ -124,7 +124,7 @@ Actual Sync ID. You can find this by logging into your Actual server in a web br
 
 ### ACTUAL_API_VERSION
 
-Optional version of the `@actual-app/api` package used by the backup process. This can be used to pin a specific version, for example `ACTUAL_API_VERSION: 'latest'` or `ACTUAL_API_VERSION: '25.8.0'`. If omitted, the container defaults to `latest`.
+Optional version of the `@actual-app/api` package used by the backup process. This can be used to pin a specific version, for example `ACTUAL_API_VERSION: 'latest'` or `ACTUAL_API_VERSION: '25.8.0'`. If omitted, the container defaults to `latest`. You may also set this to `match-server` to have the backup script grab version information from the Actual server.
 
 ### RCLONE_REMOTE_NAME
 

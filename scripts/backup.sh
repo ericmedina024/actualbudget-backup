@@ -28,6 +28,17 @@ function download_actual_budget() {
     API_VERSION=${ACTUAL_API_VERSION:-latest}
     API_DOWNLOAD_PATH=${ACTUAL_API_DOWNLOAD_PATH:-/tmp/actual-download}
 
+    if [ "$API_VERSION" == "match-server" ]; then
+        # Attempt setting the API version based on the server's info endpoint
+        API_VERSION=$(wget "${ACTUAL_BUDGET_URL}/info" -q -O - | jq -r '.build.version // halt_error(1)')
+        # If getting the server version failed
+        if [ $? -ne 0 ]; then
+            color red "Failed to grab version information from server"
+            exit 1
+        fi
+        color green "Grabbed version information from server: $API_VERSION"
+    fi
+
     # Clean and prepare folders
     mkdir -p "${API_DOWNLOAD_PATH}"
     mkdir -p "backup"
