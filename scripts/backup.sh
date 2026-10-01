@@ -36,6 +36,7 @@ function download_actual_budget() {
             color red "Failed to grab version information from server"
             exit 1
         fi
+        color green "Grabbed version information from server: $API_VERSION"
     fi
 
     # Clean and prepare folders
